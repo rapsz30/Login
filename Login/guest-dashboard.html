@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Tamu Kehormatan — The Grand Regis Luxury Premiere Hotel</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Base & Dashboard CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <style>
+    /* Specific Guest Portal Enhancements */
+    .guest-hero-banner {
+      background: 
+        linear-gradient(135deg, rgba(6, 8, 13, 0.92) 0%, rgba(25, 18, 12, 0.85) 100%),
+        url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .guest-hero-banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--gold-gradient);
+    }
+
+    .guest-digital-key {
+      background: linear-gradient(135deg, #181f30 0%, #0d121c 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(197, 168, 128, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guest-digital-key::before {
+      content: 'RFID ENCRYPTED';
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 0.62rem;
+      color: var(--gold-primary);
+      letter-spacing: 0.15em;
+      border: 1px solid var(--border-gold);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .key-rfid-chip {
+      width: 50px;
+      height: 40px;
+      background: var(--gold-gradient);
+      border-radius: 6px;
+      margin: 0 auto 1.25rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+    }
+
+    .suite-card-guest {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .suite-card-guest:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-luxury);
+    }
+
+    .suite-card-img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .suite-card-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .butler-service-card {
+      background: rgba(18, 23, 36, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .butler-service-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(197, 168, 128, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .butler-service-card i {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-monogram" style="width: 44px; height: 44px;">
+          <i class="fas fa-crown" style="font-size: 1.1rem;"></i>
+        </div>
+        <div class="sidebar-brand">
+          <h2>THE GRAND REGIS</h2>
+          <p>LUXURY PREMIERE HOTEL</p>
+        </div>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="menu-section-label">Portal Tamu</div>
+        <a class="nav-link active" href="#overviewSection">
+          <div class="nav-link-content">
+            <i class="fas fa-compass"></i>
+            <span>Beranda Tamu</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="#myBookingsSection">
+          <div class="nav-link-content">
+            <i class="fas fa-calendar-check"></i>
+            <span>Reservasi Saya</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="#suitesSection">
+          <div class="nav-link-content">
+            <i class="fas fa-bed"></i>
+            <span>Koleksi Suite Mewah</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="#butlerSection">
+          <div class="nav-link-content">
+            <i class="fas fa-bell-concierge"></i>
+            <span>Layanan Butler 24H</span>
+          </div>
+        </a>
+
+        <div class="menu-section-label">Opsi Pengguna</div>
+        <a class="nav-link" href="login.html" onclick="localStorage.removeItem('grand_regis_session')">
+          <div class="nav-link-content">
+            <i class="fas fa-user-gear"></i>
+            <span>Ganti ke Portal Staf</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- User Footer in Sidebar -->
+      <div class="sidebar-user-footer">
+        <div class="user-profile-brief">
+          <div class="user-avatar" id="sidebarAvatar">AS</div>
+          <div class="user-info-text">
+            <h4 id="sidebarUserName">Alexander Sterling</h4>
+            <p id="sidebarUserRole" style="color: var(--gold-primary);">Ambassador VIP</p>
+          </div>
+        </div>
+        <button class="btn-logout" id="logoutBtn" title="Keluar">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-title">
+            <h1>Honored Guest Sanctuary</h1>
+            <p>Portal Layanan Tamu Kehormatan The Grand Regis</p>
+          </div>
+
+          <div class="live-datetime">
+            <i class="fas fa-clock"></i>
+            <span id="liveClock">Memuat waktu...</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div style="background: rgba(197, 168, 128, 0.1); border: 1px solid var(--border-gold); padding: 0.4rem 0.85rem; border-radius: 20px; font-size: 0.78rem; display: flex; align-items: center; gap: 0.4rem;">
+            <i class="fas fa-award" style="color: var(--gold-primary);"></i>
+            <span id="guestPointsBadge" style="font-weight: 700; color: var(--gold-light);">125.400 PTS</span>
+          </div>
+
+          <button class="btn-gold" onclick="openNewBookingModal()">
+            <i class="fas fa-plus"></i> Pesan Kamar Baru
+          </button>
+
+          <div style="display: flex; align-items: center; gap: 0.6rem; padding-left: 0.75rem; border-left: 1px solid var(--border-subtle);">
+            <div class="user-avatar" id="topbarAvatar" style="width: 36px; height: 36px; font-size: 0.85rem;">AS</div>
+            <div style="display: flex; flex-direction: column;">
+              <span id="topbarUserName" style="font-size: 0.82rem; font-weight: 600; color: var(--text-primary); line-height: 1.2;">Alexander Sterling</span>
+              <span id="topbarUserTier" style="font-size: 0.7rem; color: var(--gold-primary);">Ambassador Elite</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area" id="overviewSection">
+        
+        <!-- Old Money Guest Hero Banner -->
+        <div class="guest-hero-banner">
+          <div style="max-width: 650px; position: relative; z-index: 2;">
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(197, 168, 128, 0.15); border: 1px solid var(--border-gold); padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.75rem; color: var(--gold-light); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">
+              <i class="fas fa-crown"></i> The Grand Regis Premiere Residence
+            </div>
+            <h1 style="font-size: 2.2rem; margin-bottom: 0.75rem; font-weight: 500;">
+              Selamat Datang, <span class="text-gold-gradient" id="heroGuestName">Tamu Kehormatan</span>
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+              Nikmati kenyamanan puncak dengan layanan Butler pribadi 24 jam, santapan bespoke bintang lima, dan kemudahan akses kunci digital untuk setiap kamar reservasi Anda.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <button class="btn-gold" onclick="openNewBookingModal()">
+                <i class="fas fa-calendar-plus"></i> Buat Reservasi Baru
+              </button>
+              <button class="btn-outline-gold" onclick="document.getElementById('suitesSection').scrollIntoView({behavior: 'smooth'})">
+                <i class="fas fa-eye"></i> Jelajahi Koleksi Suite
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Active Stay / My Reservations -->
+        <section class="dashboard-section" id="myBookingsSection">
+          <div class="section-header">
+            <h3><i class="fas fa-hotel"></i> Reservasi & Masa Menginap Anda</h3>
+            <span class="badge-status badge-reserved" id="reservationStatusBadge">Memuat Data...</span>
+          </div>
+
+          <div id="guestReservationsContainer">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- Section: Luxury Suite Showcase & Direct Booking -->
+        <section class="dashboard-section" id="suitesSection">
+          <div class="section-header">
+            <h3><i class="fas fa-crown"></i> Koleksi Suite Mewah Pilihan</h3>
+            <p style="font-size: 0.78rem; color: var(--text-secondary);">Tarif istimewa dengan Butler Service & Sarapan Pagi</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+            
+            <!-- Suite 1 -->
+            <div class="suite-card-guest">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop" class="suite-card-img" alt="Presidential Suite">
+              <div class="suite-card-body">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                    <h4 style="font-size: 1.05rem;">The Presidential Suite</h4>
+                    <span style="color: var(--gold-primary); font-weight: 700; font-size: 0.85rem;">Suite 801</span>
+                  </div>
+                  <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.8rem;">
+                    370 m² • Butler Pribadi 24 Jam • Private Elevator • Grand Piano
+                  </p>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--gold-light); margin-bottom: 0.8rem;">
+                    Rp 38.000.000 <small style="font-size: 0.75rem; color: var(--text-muted); font-family: sans-serif;">/ malam</small>
+                  </div>
+                  <button class="btn-gold" style="width: 100%;" onclick="quickBookSuite('801', 'Presidential Suite', 38000000)">
+                    <i class="fas fa-check"></i> Pesan Suite Ini
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Suite 2 -->
+            <div class="suite-card-guest">
+              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=800&auto=format&fit=crop" class="suite-card-img" alt="Caroline Astor Suite">
+              <div class="suite-card-body">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                    <h4 style="font-size: 1.05rem;">Caroline Astor Suite</h4>
+                    <span style="color: var(--gold-primary); font-weight: 700; font-size: 0.85rem;">Suite 602</span>
+                  </div>
+                  <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.8rem;">
+                    190 m² • Signature Butler • Marble Soaking Tub • Panoramic City View
+                  </p>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--gold-light); margin-bottom: 0.8rem;">
+                    Rp 22.500.000 <small style="font-size: 0.75rem; color: var(--text-muted); font-family: sans-serif;">/ malam</small>
+                  </div>
+                  <button class="btn-gold" style="width: 100%;" onclick="quickBookSuite('602', 'Caroline Astor Suite', 22500000)">
+                    <i class="fas fa-check"></i> Pesan Suite Ini
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Suite 3 -->
+            <div class="suite-card-guest">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" class="suite-card-img" alt="The Astor Suite">
+              <div class="suite-card-body">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                    <h4 style="font-size: 1.05rem;">The Astor Suite</h4>
+                    <span style="color: var(--gold-primary); font-weight: 700; font-size: 0.85rem;">Suite 505</span>
+                  </div>
+                  <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.8rem;">
+                    140 m² • Separate Living Room • Walk-in Wardrobe • Champagne Bar
+                  </p>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--gold-light); margin-bottom: 0.8rem;">
+                    Rp 15.000.000 <small style="font-size: 0.75rem; color: var(--text-muted); font-family: sans-serif;">/ malam</small>
+                  </div>
+                  <button class="btn-gold" style="width: 100%;" onclick="quickBookSuite('505', 'Astor Suite', 15000000)">
+                    <i class="fas fa-check"></i> Pesan Suite Ini
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Suite 4 -->
+            <div class="suite-card-guest">
+              <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=800&auto=format&fit=crop" class="suite-card-img" alt="St. Regis Suite">
+              <div class="suite-card-body">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
+                    <h4 style="font-size: 1.05rem;">The St. Regis Suite</h4>
+                    <span style="color: var(--gold-primary); font-weight: 700; font-size: 0.85rem;">Suite 402</span>
+                  </div>
+                  <p style="font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 0.8rem;">
+                    95 m² • King Luxury Bed • Regis Butler Service • Executive Desk
+                  </p>
+                </div>
+                <div>
+                  <div style="font-family: var(--font-brand); font-size: 1.15rem; color: var(--gold-light); margin-bottom: 0.8rem;">
+                    Rp 9.800.000 <small style="font-size: 0.75rem; color: var(--text-muted); font-family: sans-serif;">/ malam</small>
+                  </div>
+                  <button class="btn-gold" style="width: 100%;" onclick="quickBookSuite('402', 'St. Regis Suite', 9800000)">
+                    <i class="fas fa-check"></i> Pesan Suite Ini
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section: Butler & Concierge Services -->
+        <section class="dashboard-section" id="butlerSection">
+          <div class="section-header">
+            <h3><i class="fas fa-bell-concierge"></i> Layanan Kehormatan Butler 24 Jam</h3>
+            <p style="font-size: 0.78rem; color: var(--text-secondary);">Tekan layanan untuk mengajukan permintaan ke Butler Team</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem;">
+            <div class="butler-service-card" onclick="requestButlerService('Champagne Sabrage Ceremony')">
+              <i class="fas fa-wine-bottle"></i>
+              <h5 style="font-size: 0.9rem; margin-bottom: 4px;">Champagne Sabrage</h5>
+              <p style="font-size: 0.75rem; color: var(--text-secondary);">Tradisi pembukaan botol champagne pukul 19.00 di suite</p>
+            </div>
+
+            <div class="butler-service-card" onclick="requestButlerService('Private Limousine Airport Transfer')">
+              <i class="fas fa-car"></i>
+              <h5 style="font-size: 0.9rem; margin-bottom: 4px;">Airport Limousine</h5>
+              <p style="font-size: 0.75rem; color: var(--text-secondary);">Penjemputan bandara dengan armada Mercedes-Maybach</p>
+            </div>
+
+            <div class="butler-service-card" onclick="requestButlerService('Bespoke Pillow & Aromatherapy Menu')">
+              <i class="fas fa-feather-pointed"></i>
+              <h5 style="font-size: 0.9rem; margin-bottom: 4px;">Pillow & Aromatherapy</h5>
+              <p style="font-size: 0.75rem; color: var(--text-secondary);">Pilihan bantal bulu angsa & wewangian lavender</p>
+            </div>
+
+            <div class="butler-service-card" onclick="requestButlerService('Afternoon High Tea in Suite')">
+              <i class="fas fa-mug-hot"></i>
+              <h5 style="font-size: 0.9rem; margin-bottom: 4px;">Afternoon High Tea</h5>
+              <p style="font-size: 0.75rem; color: var(--text-secondary);">Kue-kue artisan dan teh pilihan disajikan di ruang tamu</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Guest Reservation Booking Modal -->
+  <div class="modal-backdrop" id="guestBookingModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fas fa-crown text-gold-gradient"></i> Reservasi Kamar Tamu Kehormatan</h3>
+        <button class="modal-close-btn" onclick="closeGuestBookingModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="guestBookingForm">
+        <div class="modal-body">
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label">Nama Tamu</label>
+              <input type="text" id="gGuestName" class="luxury-input" readonly>
+            </div>
+            <div class="luxury-input-group">
+              <label class="luxury-label">Email Tamu</label>
+              <input type="email" id="gGuestEmail" class="luxury-input" readonly>
+            </div>
+          </div>
+
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label">Suite yang Dipilih</label>
+              <select id="gRoomNumber" class="luxury-select" required>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+            <div class="luxury-input-group">
+              <label class="luxury-label">Nomor Telepon / WA</label>
+              <input type="text" id="gGuestPhone" class="luxury-input" placeholder="+62 812..." required>
+            </div>
+          </div>
+
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label">Tanggal Check-In</label>
+              <input type="date" id="gCheckIn" class="luxury-input" required>
+            </div>
+            <div class="luxury-input-group">
+              <label class="luxury-label">Tanggal Check-Out</label>
+              <input type="date" id="gCheckOut" class="luxury-input" required>
+            </div>
+          </div>
+
+          <div class="luxury-input-group">
+            <label class="luxury-label">Permintaan Khusus untuk Tim Butler</label>
+            <textarea id="gSpecial" class="luxury-textarea" rows="2" placeholder="Contoh: Harap sediakan sambutan buah tropis dan lavender aromatherapy..."></textarea>
+          </div>
+
+          <div style="background: rgba(197, 168, 128, 0.08); border: 1px dashed var(--border-gold); padding: 1rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <small style="color: var(--text-secondary); text-transform: uppercase; font-size: 0.72rem;">Durasi:</small>
+              <div id="gNightsEstimate" style="font-weight: 700; color: var(--gold-light);">1 Malam</div>
+            </div>
+            <div style="text-align: right;">
+              <small style="color: var(--text-secondary); text-transform: uppercase; font-size: 0.72rem;">Total Estimasi Tagihan:</small>
+              <div id="gTotalEstimate" style="font-weight: 700; font-size: 1.1rem; color: var(--gold-primary);">Rp 0</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-outline-gold" onclick="closeGuestBookingModal()">Batal</button>
+          <button type="submit" class="btn-gold"><i class="fas fa-check-circle"></i> Konfirmasi Pemesanan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Supabase & Core Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    let activeGuest = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Role Guard: must be logged in as guest
+      activeGuest = checkAuthSession('guest');
+      if (!activeGuest) return;
+
+      setupGuestProfile(activeGuest);
+      startLiveClock();
+      renderGuestReservations();
+      setupGuestEventListeners();
+    });
+
+    function setupGuestProfile(guest) {
+      const initials = guest.name ? guest.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'VIP';
+      const tier = guest.vipTier || 'Honored Guest';
+
+      document.getElementById('topbarUserName').textContent = guest.name;
+      document.getElementById('topbarUserTier').textContent = tier;
+      document.getElementById('topbarAvatar').textContent = initials;
+      document.getElementById('sidebarUserName').textContent = guest.name;
+      document.getElementById('sidebarUserRole').textContent = tier;
+      document.getElementById('sidebarAvatar').textContent = initials;
+      document.getElementById('heroGuestName').textContent = guest.name;
+
+      if (guest.points) {
+        document.getElementById('guestPointsBadge').textContent = guest.points;
+      }
+    }
+
+    function startLiveClock() {
+      const clockEl = document.getElementById('liveClock');
+      if (!clockEl) return;
+      function update() {
+        const now = new Date();
+        clockEl.textContent = now.toLocaleString('id-ID', {
+          weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Jakarta'
+        }) + ' WIB';
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    function renderGuestReservations() {
+      const container = document.getElementById('guestReservationsContainer');
+      const badge = document.getElementById('reservationStatusBadge');
+      const allReservations = getStoredReservations();
+
+      // Find reservation belonging to this guest by name or email
+      const myReservations = allReservations.filter(r => 
+        (r.guestEmail && r.guestEmail.toLowerCase() === activeGuest.email.toLowerCase()) ||
+        (r.guestName && r.guestName.toLowerCase().includes(activeGuest.name.toLowerCase())) ||
+        (activeGuest.name && activeGuest.name.toLowerCase().includes(r.guestName.toLowerCase()))
+      );
+
+      if (myReservations.length === 0) {
+        badge.className = 'badge-status badge-reserved';
+        badge.textContent = 'Belum Ada Reservasi Aktif';
+        container.innerHTML = `
+          <div style="text-align: center; padding: 2.5rem; background: rgba(15, 20, 32, 0.6); border: 1px dashed var(--border-subtle); border-radius: 8px;">
+            <i class="fas fa-bed" style="font-size: 2.5rem; color: var(--gold-primary); margin-bottom: 1rem;"></i>
+            <h4 style="margin-bottom: 0.5rem;">Anda Belum Memiliki Reservasi Aktif</h4>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; max-width: 480px; margin: 0 auto 1.5rem auto;">
+              Pilih suite idaman Anda dari koleksi kamar The Grand Regis di bawah ini untuk menikmati fasilitas bintang lima kami.
+            </p>
+            <button class="btn-gold" onclick="openNewBookingModal()">
+              <i class="fas fa-calendar-plus"></i> Pesan Suite Sekarang
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const currentStay = myReservations[0];
+      badge.textContent = currentStay.status;
+      badge.className = `badge-status ${currentStay.status === 'Checked-In' ? 'badge-checkedin' : 'badge-reserved'}`;
+
+      let keyCardHtml = '';
+      if (currentStay.status === 'Checked-In') {
+        keyCardHtml = `
+          <div class="guest-digital-key">
+            <div class="key-rfid-chip">
+              <i class="fas fa-wifi" style="transform: rotate(90deg); color: #0c1017; font-size: 1.1rem;"></i>
+            </div>
+            <h4 style="font-size: 1.15rem; letter-spacing: 0.1em; color: var(--text-primary); margin-bottom: 4px;">KUNCI DIGITAL KAMAR</h4>
+            <div style="font-family: monospace; font-size: 1.25rem; font-weight: 700; color: var(--gold-light); letter-spacing: 0.15em; margin-bottom: 0.75rem;">
+              ${currentStay.roomKeyIssued || 'KEY-' + currentStay.roomNumber + '-ACT'}
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Suite ${currentStay.roomNumber} • Aktif Selama Masa Menginap
+            </p>
+            <button class="btn-gold" style="font-size: 0.75rem; padding: 0.5rem 1rem;" onclick="showLuxuryToast('Kunci Digital', 'Pintu Suite ${currentStay.roomNumber} Terbuka. Selamat Beristirahat!', 'success')">
+              <i class="fas fa-lock-open"></i> Buka Pintu Suite
+            </button>
+          </div>
+        `;
+      } else {
+        keyCardHtml = `
+          <div style="background: rgba(18, 24, 38, 0.85); border: 1px dashed var(--border-gold); border-radius: 12px; padding: 2rem; text-align: center;">
+            <i class="fas fa-clock" style="font-size: 2rem; color: var(--gold-primary); margin-bottom: 0.75rem;"></i>
+            <h5 style="margin-bottom: 4px;">Menunggu Waktu Check-In</h5>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">
+              Kunci digital RFID kamar Anda akan otomatis diterbitkan oleh Resepsionis saat tiba di hotel.
+            </p>
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem; align-items: start;">
+          <div style="background: rgba(14, 18, 29, 0.8); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-subtle);">
+              <div>
+                <span style="font-family: monospace; color: var(--gold-primary); font-weight: 600;">#${currentStay.id}</span>
+                <h4 style="font-size: 1.25rem; margin-top: 2px;">Suite ${currentStay.roomNumber} — ${currentStay.roomType}</h4>
+              </div>
+              <span class="badge-status ${currentStay.status === 'Checked-In' ? 'badge-checkedin' : 'badge-reserved'}">
+                ${currentStay.status}
+              </span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; font-size: 0.85rem;">
+              <div>
+                <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Check-In:</span>
+                <div style="color: #48d38a; font-weight: 600;">${formatDateDisplay(currentStay.checkInDate)}</div>
+              </div>
+              <div>
+                <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Check-Out:</span>
+                <div style="color: #e6b94d; font-weight: 600;">${formatDateDisplay(currentStay.checkOutDate)}</div>
+              </div>
+            </div>
+
+            <div style="background: rgba(10, 14, 22, 0.6); padding: 1rem; border-radius: 6px; border: 1px solid var(--border-subtle); margin-bottom: 1.25rem; font-size: 0.85rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span style="color: var(--text-secondary);">Total Tagihan Folio:</span>
+                <strong style="color: var(--gold-light);">${formatRupiah(currentStay.totalFolio)}</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-secondary);">Deposit Telah Dibayar:</span>
+                <span style="color: #48d38a;">${formatRupiah(currentStay.depositPaid || 0)}</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn-outline-gold" style="font-size: 0.78rem; padding: 0.5rem 1rem;" onclick="showLuxuryToast('Permintaan Butler', 'Tim Butler siap membantu kebutuhan tambahan Anda.', 'success')">
+                <i class="fas fa-bell-concierge"></i> Hubungi Butler
+              </button>
+              ${currentStay.status === 'Checked-In' ? `
+                <button class="btn-outline-gold" style="font-size: 0.78rem; padding: 0.5rem 1rem;" onclick="showLuxuryToast('Permintaan Check-Out', 'Permintaan check-out mandiri telah diteruskan ke kasir front desk. Terima kasih telah menginap bersama kami.', 'success')">
+                  <i class="fas fa-sign-out-alt"></i> Minta Check-Out
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          <div>
+            ${keyCardHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    // Modal Booking Handlers
+    function openNewBookingModal() {
+      const modal = document.getElementById('guestBookingModal');
+      document.getElementById('gGuestName').value = activeGuest.name;
+      document.getElementById('gGuestEmail').value = activeGuest.email;
+      document.getElementById('gGuestPhone').value = activeGuest.phone || '+62 812 0000 0000';
+
+      const rooms = getStoredRooms();
+      const roomSelect = document.getElementById('gRoomNumber');
+      roomSelect.innerHTML = '';
+      rooms.forEach(rm => {
+        const opt = document.createElement('option');
+        opt.value = rm.number;
+        opt.dataset.rate = rm.rate;
+        opt.dataset.type = rm.type;
+        opt.textContent = `Suite ${rm.number} - ${rm.name} (${formatRupiah(rm.rate)}/malam)`;
+        roomSelect.appendChild(opt);
+      });
+
+      const today = new Date().toISOString().split('T')[0];
+      const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+      document.getElementById('gCheckIn').value = today;
+      document.getElementById('gCheckOut').value = tomorrow;
+
+      recalcGuestEstimates();
+      modal.classList.add('active');
+    }
+
+    function quickBookSuite(roomNumber, roomType, rate) {
+      openNewBookingModal();
+      const select = document.getElementById('gRoomNumber');
+      select.value = roomNumber;
+      recalcGuestEstimates();
+    }
+
+    function closeGuestBookingModal() {
+      document.getElementById('guestBookingModal').classList.remove('active');
+    }
+
+    function recalcGuestEstimates() {
+      const select = document.getElementById('gRoomNumber');
+      const checkIn = document.getElementById('gCheckIn').value;
+      const checkOut = document.getElementById('gCheckOut').value;
+      if (!select || !checkIn || !checkOut) return;
+
+      const opt = select.selectedOptions[0];
+      const rate = opt ? parseInt(opt.dataset.rate || '0') : 0;
+      const nights = calculateNights(checkIn, checkOut);
+      const total = rate * nights;
+
+      document.getElementById('gNightsEstimate').textContent = `${nights} Malam`;
+      document.getElementById('gTotalEstimate').textContent = formatRupiah(total);
+    }
+
+    function setupGuestEventListeners() {
+      document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+
+      const form = document.getElementById('guestBookingForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const select = document.getElementById('gRoomNumber');
+        const opt = select.selectedOptions[0];
+        const roomNumber = opt.value;
+        const roomType = opt.dataset.type;
+        const ratePerNight = parseInt(opt.dataset.rate || '0');
+        const checkIn = document.getElementById('gCheckIn').value;
+        const checkOut = document.getElementById('gCheckOut').value;
+        const nights = calculateNights(checkIn, checkOut);
+        const totalFolio = ratePerNight * nights;
+        const special = document.getElementById('gSpecial').value.trim();
+
+        const newId = 'RSV-' + Math.floor(1000 + Math.random() * 9000);
+        const newReservation = {
+          id: newId,
+          guestName: activeGuest.name,
+          guestIdentity: 'VERIFIED-GUEST-ID',
+          guestEmail: activeGuest.email,
+          guestPhone: document.getElementById('gGuestPhone').value,
+          vipTier: activeGuest.vipTier || 'VIP Guest',
+          roomNumber: roomNumber,
+          roomType: roomType,
+          checkInDate: checkIn,
+          checkOutDate: checkOut,
+          nights: nights,
+          ratePerNight: ratePerNight,
+          depositPaid: totalFolio * 0.5, // 50% deposit paid
+          totalFolio: totalFolio,
+          specialRequests: special || 'Direct booking through Grand Regis Guest Portal',
+          status: 'Reserved',
+          roomKeyIssued: null,
+          checkInTime: null,
+          checkOutTime: null
+        };
+
+        const allReservations = getStoredReservations();
+        allReservations.unshift(newReservation);
+        saveReservations(allReservations);
+        if (typeof createSupabaseReservation === 'function') {
+          createSupabaseReservation(newReservation);
+        }
+
+        closeGuestBookingModal();
+        showLuxuryToast('Reservasi Terkonfirmasi', `Pemesanan Suite ${roomNumber} berhasil dibuat dengan kode #${newId}!`, 'success');
+        renderGuestReservations();
+      });
+
+      document.getElementById('gRoomNumber').addEventListener('change', recalcGuestEstimates);
+      document.getElementById('gCheckIn').addEventListener('change', recalcGuestEstimates);
+      document.getElementById('gCheckOut').addEventListener('change', recalcGuestEstimates);
+    }
+
+    function requestButlerService(serviceName) {
+      showLuxuryToast('Butler Diinstruksikan', `Permintaan "${serviceName}" telah diteruskan ke Butler Team The Grand Regis.`, 'success');
+    }
+  </script>
+</body>
+</html>

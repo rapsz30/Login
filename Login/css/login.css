@@ -1,0 +1,438 @@
+/* ============================================================
+   THE GRAND REGIS JAKARTA - AUTHENTICATION STYLES (Login & Register)
+   ============================================================ */
+
+.auth-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Left Showcase Panel - St. Regis Marriott Luxury Suite Bedroom */
+.auth-showcase {
+  flex: 1.18;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.75rem 3.5rem;
+  background: 
+    linear-gradient(135deg, rgba(6, 8, 13, 0.82) 0%, rgba(20, 15, 12, 0.72) 100%),
+    url('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+  border-right: 1px solid var(--border-gold);
+  overflow: hidden;
+}
+
+.auth-showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 40% 30%, rgba(197, 168, 128, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.showcase-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.showcase-brand-info h3 {
+  font-size: 1.25rem;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.showcase-brand-info p {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+}
+
+.showcase-center-content {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+  margin: 4rem 0;
+}
+
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(197, 168, 128, 0.12);
+  border: 1px solid var(--border-gold);
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.showcase-title {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.showcase-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.showcase-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.feature-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(15, 20, 32, 0.6);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.feature-pill:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-2px);
+}
+
+.feature-pill i {
+  color: var(--gold-primary);
+  font-size: 1.1rem;
+}
+
+.feature-pill span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.showcase-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+}
+
+.showcase-footer p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.showcase-stars {
+  color: var(--gold-primary);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+}
+
+/* Right Form Panel */
+.auth-form-container {
+  flex: 0.95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  background-color: #07090e;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(197, 168, 128, 0.05) 0%, transparent 60%),
+    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iIzBhMGQxNiIvPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M1YTg4MCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjMiPgogICAgPHBhdGggZD0iTTEyMCA0IEwyMzYgMTIwIEwxMjAgMjM2IEw0IDEyMCBaIi8+CiAgICA8cGF0aCBkPSJNMTIwIDQ0IEwxOTYgMTIwIEwxMjAgMTk2IEw0NCAxMjAgWiIvPgogICAgPHBhdGggZD0iTTEyMCA2MCBRMTQwIDkwIDEyMCAxMjAgUTEwMCA5MCAxMjAgNjAgWiIvPgogICAgPHBhdGggZD0iTTEyMCAxODAgUTE0MCAxNTAgMTIwIDEyMCBRMTAwIDE1MCAxMjAgMTgwIFoiLz4KICAgIDxwYXRoIGQ9Ik02MCAxMjAgUTkwIDEwMCAxMjAgMTIwIFE5MCAxNDAgNjAgMTIwIFoiLz4KICAgIDxwYXRoIGQ9Ik0xODAgMTIwIFExNTAgMTAwIDEyMCAxMjAgUTE1MCAxNDAgMTgwIDEyMCBaIi8+CiAgICA8cGF0aCBkPSJNMCAwIFEzNCAwIDM0IDM0Ii8+CiAgICA8cGF0aCBkPSJNMjQwIDAgUTIwNiAwIDIwNiAzNCIvPgogICAgPHBhdGggZD0iTTAgMjQwIFEzNCAyNDAgMzQgMjA2Ii8+CiAgICA8cGF0aCBkPSJNMjQwIDI0MCBRMjA2IDI0MCAyMDYgMjA2Ii8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iMy41IiBmaWxsPSIjYzVhODgwIiBvcGFjaXR5PSIwLjU1Ii8+CiAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjIuNSIgZmlsbD0iI2M1YTg4MCIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMjQwIiBjeT0iMCIgcj0iMi41IiBmaWxsPSIjYzVhODgwIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIwIiBjeT0iMjQwIiByPSIyLjUiIGZpbGw9IiNjNWE4ODAiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjI0MCIgcj0iMi41IiBmaWxsPSIjYzVhODgwIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+Cg==');
+  background-size: auto, 240px 240px;
+  background-position: center top, center center;
+  background-repeat: no-repeat, repeat;
+  position: relative;
+}
+
+.auth-form-container::before {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.08) 0%, transparent 70%);
+  top: 10%;
+  right: 10%;
+  pointer-events: none;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(14, 18, 28, 0.3);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(197, 168, 128, 0.1);
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  outline: 1px solid rgba(197, 168, 128, 0.15);
+  outline-offset: -8px;
+}
+
+.auth-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: var(--gold-gradient);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header .brand-monogram {
+  margin-bottom: 1.25rem;
+}
+
+.auth-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+}
+
+.auth-header p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.75rem;
+}
+
+.auth-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.auth-tab.active {
+  color: var(--gold-primary);
+  border-bottom-color: var(--gold-primary);
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-with-icon > i.input-icon-left,
+.input-with-icon > i:first-child {
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  transition: var(--transition);
+  font-size: 0.95rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.input-with-icon .luxury-input {
+  width: 100%;
+  padding-left: 2.85rem !important;
+  padding-right: 3rem !important; /* Proper right padding for eye icon */
+}
+
+.input-with-icon .luxury-input:focus ~ i.input-icon-left,
+.input-with-icon .luxury-input:focus ~ i:first-child {
+  color: var(--gold-primary);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  z-index: 5;
+  padding: 0;
+  outline: none;
+  transition: var(--transition);
+}
+
+.toggle-password:hover {
+  color: var(--gold-light);
+  background: rgba(197, 168, 128, 0.15);
+}
+
+.toggle-password i {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  font-size: 1.05rem !important;
+  color: inherit !important;
+  pointer-events: auto !important;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  accent-color: var(--gold-primary);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Quick Demo Login Box (For easy thesis defense presentation) */
+.quick-demo-box {
+  background: rgba(197, 168, 128, 0.05);
+  border: 1px dashed var(--border-gold);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.quick-demo-box h5 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-primary);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.demo-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.btn-demo-quick {
+  background: rgba(15, 20, 32, 0.85);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.btn-demo-quick:hover {
+  background: var(--gold-primary);
+  color: #0c1017;
+  border-color: var(--gold-primary);
+  font-weight: 600;
+}
+
+.auth-footer-note {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.auth-footer-note a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .auth-wrapper {
+    flex-direction: column;
+  }
+  .auth-showcase {
+    flex: none;
+    padding: 2.5rem 2rem;
+  }
+  .showcase-center-content {
+    margin: 2rem 0;
+  }
+  .showcase-title {
+    font-size: 2rem;
+  }
+  .auth-form-container {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .showcase-features {
+    grid-template-columns: 1fr;
+  }
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+  .demo-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+}

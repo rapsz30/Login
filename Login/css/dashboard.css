@@ -1,0 +1,1023 @@
+/* ============================================================
+   THE GRAND REGIS JAKARTA - DASHBOARD STYLES
+   Hospitality Management & Operations Console
+   ============================================================ */
+
+/* Luxury ornamental background — repeating Art Deco gold pattern (no photo) */
+body {
+  background-color: #07090e;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(197, 168, 128, 0.05) 0%, transparent 60%),
+    url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iIzBhMGQxNiIvPgogIDxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M1YTg4MCIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjMiPgogICAgPHBhdGggZD0iTTEyMCA0IEwyMzYgMTIwIEwxMjAgMjM2IEw0IDEyMCBaIi8+CiAgICA8cGF0aCBkPSJNMTIwIDQ0IEwxOTYgMTIwIEwxMjAgMTk2IEw0NCAxMjAgWiIvPgogICAgPHBhdGggZD0iTTEyMCA2MCBRMTQwIDkwIDEyMCAxMjAgUTEwMCA5MCAxMjAgNjAgWiIvPgogICAgPHBhdGggZD0iTTEyMCAxODAgUTE0MCAxNTAgMTIwIDEyMCBRMTAwIDE1MCAxMjAgMTgwIFoiLz4KICAgIDxwYXRoIGQ9Ik02MCAxMjAgUTkwIDEwMCAxMjAgMTIwIFE5MCAxNDAgNjAgMTIwIFoiLz4KICAgIDxwYXRoIGQ9Ik0xODAgMTIwIFExNTAgMTAwIDEyMCAxMjAgUTE1MCAxNDAgMTgwIDEyMCBaIi8+CiAgICA8cGF0aCBkPSJNMCAwIFEzNCAwIDM0IDM0Ii8+CiAgICA8cGF0aCBkPSJNMjQwIDAgUTIwNiAwIDIwNiAzNCIvPgogICAgPHBhdGggZD0iTTAgMjQwIFEzNCAyNDAgMzQgMjA2Ii8+CiAgICA8cGF0aCBkPSJNMjQwIDI0MCBRMjA2IDI0MCAyMDYgMjA2Ii8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iMy41IiBmaWxsPSIjYzVhODgwIiBvcGFjaXR5PSIwLjU1Ii8+CiAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjIuNSIgZmlsbD0iI2M1YTg4MCIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMjQwIiBjeT0iMCIgcj0iMi41IiBmaWxsPSIjYzVhODgwIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIwIiBjeT0iMjQwIiByPSIyLjUiIGZpbGw9IiNjNWE4ODAiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjI0MCIgcj0iMi41IiBmaWxsPSIjYzVhODgwIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+Cg==');
+  background-size: auto, 240px 240px;
+  background-position: center top, center center;
+  background-attachment: fixed, fixed;
+  background-repeat: no-repeat, repeat;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+}
+
+/* ------------------------------------------------------------
+   SIDEBAR NAVIGATION
+   ------------------------------------------------------------ */
+.sidebar {
+  width: 280px;
+  background: rgba(7, 9, 14, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(197, 168, 128, 0.22);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  transition: var(--transition);
+}
+
+.sidebar-header {
+  padding: 2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 14, 22, 0.12);
+}
+
+.sidebar-brand h2 {
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+.sidebar-brand p {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.menu-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.nav-link-content {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.nav-link i {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--gold-light);
+  background: var(--gold-dim);
+  border-color: var(--border-subtle);
+}
+
+.nav-link:hover i {
+  color: var(--gold-primary);
+}
+
+.nav-link.active {
+  color: var(--gold-light);
+  background: linear-gradient(90deg, rgba(197, 168, 128, 0.16) 0%, rgba(197, 168, 128, 0.04) 100%);
+  border-left: 3px solid var(--gold-primary);
+  font-weight: 600;
+}
+
+.nav-link.active i {
+  color: var(--gold-primary);
+}
+
+.nav-counter {
+  background: rgba(197, 168, 128, 0.2);
+  color: var(--gold-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+}
+
+.sidebar-user-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(12, 16, 26, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-profile-brief {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  color: #0d111a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 0 10px rgba(197, 168, 128, 0.25);
+}
+
+.user-info-text h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.user-info-text p {
+  font-size: 0.72rem;
+  color: var(--gold-primary);
+}
+
+.btn-logout {
+  background: none;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.btn-logout:hover {
+  color: var(--status-danger-text);
+  border-color: var(--status-danger-border);
+  background: var(--status-danger-bg);
+}
+
+/* ------------------------------------------------------------
+   MAIN WORKSPACE & HEADER
+   ------------------------------------------------------------ */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.topbar {
+  background: rgba(15, 20, 32, 0.16);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.topbar-title h1 {
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+}
+
+.topbar-title p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.live-datetime {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(10, 14, 22, 0.2);
+  border: 1px solid var(--border-subtle);
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: var(--gold-light);
+}
+
+.live-datetime i {
+  color: var(--gold-primary);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quick-search {
+  position: relative;
+  width: 280px;
+}
+
+.quick-search i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.quick-search input {
+  width: 100%;
+  background: rgba(10, 14, 22, 0.22);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 0.55rem 1rem 0.55rem 2.4rem;
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.quick-search input:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 10px rgba(197, 168, 128, 0.2);
+}
+
+/* ------------------------------------------------------------
+   CONTENT CONTAINER
+   ------------------------------------------------------------ */
+.content-area {
+  padding: 2rem;
+  flex: 1;
+}
+
+/* ------------------------------------------------------------
+   STATISTICS & METRIC CARDS
+   ------------------------------------------------------------ */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: rgba(18, 23, 34, 0.16);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.35rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.metric-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-luxury);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold-gradient);
+  opacity: 0.4;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.metric-header p {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.metric-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(197, 168, 128, 0.1);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  font-size: 1.15rem;
+}
+
+.metric-value {
+  font-family: var(--font-brand);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.1;
+}
+
+.metric-footer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.metric-trend-up {
+  color: #48d38a;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   ROOMS LIVE STATUS PANEL (SHOWCASE)
+   ------------------------------------------------------------ */
+.dashboard-section {
+  background: rgba(18, 23, 34, 0.16);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-header h3 {
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section-header h3 i {
+  color: var(--gold-primary);
+}
+
+.room-legend {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.legend-dot.available { background: #48d38a; box-shadow: 0 0 6px #48d38a; }
+.legend-dot.occupied { background: #e6b94d; box-shadow: 0 0 6px #e6b94d; }
+.legend-dot.cleaning { background: #c084fc; box-shadow: 0 0 6px #c084fc; }
+
+.rooms-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.room-card-item {
+  background: rgba(15, 20, 32, 0.16);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 1rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.room-card-item:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-2px);
+}
+
+.room-card-item.status-available {
+  border-left: 3px solid #48d38a;
+}
+.room-card-item.status-occupied {
+  border-left: 3px solid #e6b94d;
+  background: rgba(30, 26, 17, 0.14);
+}
+.room-card-item.status-cleaning {
+  border-left: 3px solid #c084fc;
+}
+
+.room-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.room-number {
+  font-family: var(--font-brand);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.room-type {
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.room-rate {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.room-guest-current {
+  font-size: 0.72rem;
+  color: var(--gold-primary);
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed rgba(197, 168, 128, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ------------------------------------------------------------
+   CRUD TABLE: RESERVATIONS & GUESTS
+   ------------------------------------------------------------ */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.filter-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-pill-btn {
+  background: rgba(15, 20, 32, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-pill-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--text-primary);
+}
+
+.filter-pill-btn.active {
+  background: var(--gold-gradient);
+  color: #090c12;
+  font-weight: 600;
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(197, 168, 128, 0.3);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.luxury-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.luxury-table th {
+  background: rgba(11, 15, 24, 0.95);
+  color: var(--gold-primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.luxury-table td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid rgba(197, 168, 128, 0.08);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.luxury-table tbody tr {
+  transition: var(--transition);
+}
+
+.luxury-table tbody tr:hover {
+  background: rgba(197, 168, 128, 0.04);
+}
+
+/* Table Item Elements */
+.guest-info-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.guest-avatar-small {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(197, 168, 128, 0.15);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.guest-details-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.guest-details-vip {
+  font-size: 0.7rem;
+  color: var(--gold-primary);
+}
+
+.booking-code {
+  font-family: monospace;
+  color: var(--gold-light);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.action-buttons-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.btn-table-action {
+  background: rgba(15, 20, 32, 0.9);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0.38rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-table-action:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+.btn-action-checkin {
+  background: rgba(46, 204, 113, 0.15);
+  color: #48d38a;
+  border-color: rgba(46, 204, 113, 0.35);
+  font-weight: 600;
+}
+
+.btn-action-checkin:hover {
+  background: #2ecc71;
+  color: #0c1017;
+  border-color: #2ecc71;
+}
+
+.btn-action-checkout {
+  background: rgba(230, 185, 77, 0.15);
+  color: #e6b94d;
+  border-color: rgba(230, 185, 77, 0.35);
+  font-weight: 600;
+}
+
+.btn-action-checkout:hover {
+  background: #e6b94d;
+  color: #0c1017;
+  border-color: #e6b94d;
+}
+
+.btn-action-delete {
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.btn-action-delete:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+/* ------------------------------------------------------------
+   MODAL WINDOW SYSTEM
+   ------------------------------------------------------------ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: 680px;
+  background: var(--bg-modal);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  box-shadow: var(--shadow-luxury);
+  position: relative;
+  transform: scale(0.95) translateY(15px);
+  transition: var(--transition);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-backdrop.active .modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+.modal-dialog::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: var(--gold-gradient);
+}
+
+.modal-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  color: var(--gold-primary);
+}
+
+.modal-body {
+  padding: 1.75rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  background: rgba(10, 14, 22, 0.5);
+}
+
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ------------------------------------------------------------
+   LUXURY HOTEL BILL / FOLIO INVOICE (CHECK-OUT VIEW)
+   ------------------------------------------------------------ */
+.folio-invoice-container {
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 2.5rem;
+  border-radius: 4px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+.folio-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #c5a880;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.folio-brand h2 {
+  font-family: 'Cinzel', serif;
+  color: #0c1017;
+  font-size: 1.35rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.folio-brand p {
+  font-size: 0.78rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.folio-meta {
+  text-align: right;
+}
+
+.folio-meta h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  color: #c5a880;
+  margin-bottom: 4px;
+}
+
+.folio-meta p {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.folio-guest-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background: #faf8f5;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  border-left: 3px solid #c5a880;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.folio-field {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+}
+
+.folio-field span:first-child {
+  color: #777;
+  font-weight: 500;
+}
+
+.folio-field span:last-child {
+  color: #111;
+  font-weight: 600;
+}
+
+.folio-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.folio-items-table th {
+  background: #f0ebe1;
+  color: #333;
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+}
+
+.folio-items-table td {
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.folio-summary {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.folio-summary-table {
+  width: 320px;
+  font-size: 0.85rem;
+}
+
+.folio-summary-table td {
+  padding: 0.4rem 0.6rem;
+}
+
+.folio-summary-table tr.grand-total td {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #0c1017;
+  border-top: 2px solid #c5a880;
+  border-bottom: 2px solid #c5a880;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.folio-signature-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #ccc;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.folio-sign-box {
+  width: 200px;
+}
+
+.folio-sign-line {
+  margin-top: 45px;
+  border-bottom: 1px solid #555;
+}
+
+/* ------------------------------------------------------------
+   PRINT STYLES FOR FOLIO INVOICE
+   ------------------------------------------------------------ */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .modal-backdrop, .modal-backdrop * {
+    visibility: visible;
+  }
+  .modal-backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    padding: 0;
+  }
+  .modal-dialog {
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    transform: none !important;
+  }
+  .modal-header, .modal-footer, .modal-close-btn {
+    display: none !important;
+  }
+  .folio-invoice-container {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   ------------------------------------------------------------ */
+@media (max-width: 1200px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    position: fixed;
+    left: -280px;
+  }
+  .sidebar.mobile-open {
+    left: 0;
+  }
+  .topbar {
+    padding: 1rem;
+  }
+  .content-area {
+    padding: 1rem;
+  }
+  .quick-search {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row-grid {
+    grid-template-columns: 1fr;
+  }
+  .table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

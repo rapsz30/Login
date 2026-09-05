@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Grand Regis — Luxury Premiere Hotel</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Base & Dashboard CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-monogram" style="width: 44px; height: 44px;">
+          <i class="fas fa-crown" style="font-size: 1.1rem;"></i>
+        </div>
+        <div class="sidebar-brand">
+          <h2>THE GRAND REGIS</h2>
+          <p>LUXURY PREMIERE HOTEL</p>
+        </div>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="menu-section-label">Menu Utama</div>
+        <a class="nav-link active" href="dashboard.html">
+          <div class="nav-link-content">
+            <i class="fas fa-chart-pie"></i>
+            <span>Ringkasan Dashboard</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="#reservationsSection">
+          <div class="nav-link-content">
+            <i class="fas fa-calendar-check"></i>
+            <span>Reservasi Tamu</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="#roomsSection">
+          <div class="nav-link-content">
+            <i class="fas fa-bed"></i>
+            <span>Status Kamar / Suite</span>
+          </div>
+        </a>
+
+        <div class="menu-section-label">Layanan Kehormatan</div>
+        <a class="nav-link" href="javascript:void(0)" onclick="openReservationModal()">
+          <div class="nav-link-content">
+            <i class="fas fa-plus-circle"></i>
+            <span>Reservasi Baru</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="javascript:void(0)" onclick="showLuxuryToast('Butler Service', 'Layanan Butler 24 Jam siap melayani reservasi dan permintaan khusus VIP.', 'success')">
+          <div class="nav-link-content">
+            <i class="fas fa-bell-concierge"></i>
+            <span>Butler & Concierge</span>
+          </div>
+        </a>
+
+        <a class="nav-link" href="guest-dashboard.html">
+          <div class="nav-link-content">
+            <i class="fas fa-crown"></i>
+            <span>Buka Portal Tamu</span>
+          </div>
+        </a>
+
+      <!-- User Footer in Sidebar -->
+      <div class="sidebar-user-footer">
+        <div class="user-profile-brief">
+          <div class="user-avatar" id="sidebarAvatar">RA</div>
+          <div class="user-info-text">
+            <h4 id="sidebarUserName">Raynor Athaillah</h4>
+            <p id="sidebarUserRole">Front Desk Manager</p>
+          </div>
+        </div>
+        <button class="btn-logout" id="logoutBtn" title="Keluar dari Sistem">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-title">
+            <h1>Executive Operations Console</h1>
+            <p>Sistem Pemantauan Reservasi, Check-In & Check-Out Terintegrasi</p>
+          </div>
+
+          <div class="live-datetime">
+            <i class="fas fa-clock"></i>
+            <span id="liveClock">Memuat waktu...</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="quick-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="globalSearchInput" placeholder="Cari nama tamu / nomor kamar...">
+          </div>
+
+          <button class="btn-gold" id="newReservationBtn">
+            <i class="fas fa-plus"></i> Reservasi Baru
+          </button>
+
+          <div style="display: flex; align-items: center; gap: 0.6rem; padding-left: 0.75rem; border-left: 1px solid var(--border-subtle);">
+            <div class="user-avatar" id="topbarAvatar" style="width: 36px; height: 36px; font-size: 0.85rem;">RA</div>
+            <div style="display: flex; flex-direction: column;">
+              <span id="topbarUserName" style="font-size: 0.82rem; font-weight: 600; color: var(--text-primary); line-height: 1.2;">Raynor Athaillah</span>
+              <span id="topbarUserRole" style="font-size: 0.7rem; color: var(--gold-primary);">Front Desk Manager</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        
+        <!-- 4 Executive Metric Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-header">
+              <p>Tamu In-House (Menginap)</p>
+              <div class="metric-icon-box">
+                <i class="fas fa-user-check"></i>
+              </div>
+            </div>
+            <div class="metric-value" id="metricInHouse">0</div>
+            <div class="metric-footer">
+              <span class="metric-trend-up"><i class="fas fa-arrow-trend-up"></i> Terlayani</span>
+              <span>Aktif di dalam suite</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <p>Jadwal Check-In (Reserved)</p>
+              <div class="metric-icon-box">
+                <i class="fas fa-calendar-day"></i>
+              </div>
+            </div>
+            <div class="metric-value" id="metricReserved">0</div>
+            <div class="metric-footer">
+              <span style="color: var(--gold-primary);"><i class="fas fa-clock"></i> Menunggu Kedatangan</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <p>Tamu Selesai Check-Out</p>
+              <div class="metric-icon-box">
+                <i class="fas fa-receipt"></i>
+              </div>
+            </div>
+            <div class="metric-value" id="metricCheckedOut">0</div>
+            <div class="metric-footer">
+              <span style="color: #94a3b8;"><i class="fas fa-file-invoice"></i> Folio Ditutup</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <p>Tingkat Okupansi Suite</p>
+              <div class="metric-icon-box">
+                <i class="fas fa-hotel"></i>
+              </div>
+            </div>
+            <div class="metric-value text-gold-gradient" id="metricOccupancy">0%</div>
+            <div class="metric-footer">
+              <span class="metric-trend-up"><i class="fas fa-chart-line"></i> Optimal</span>
+              <span>Kapasitas live room</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Live Inventory Status Section -->
+        <section class="dashboard-section" id="roomsSection">
+          <div class="section-header">
+            <h3><i class="fas fa-door-closed"></i> Pemantauan Koleksi Suite (Live Inventory)</h3>
+            <div class="room-legend">
+              <div><span class="legend-dot available"></span> Tersedia</div>
+              <div><span class="legend-dot occupied"></span> Terisi (Occupied)</div>
+              <div><span class="legend-dot cleaning"></span> Pembersihan (Cleaning)</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Room Cards Grid -->
+          <div class="rooms-showcase-grid" id="roomsShowcaseContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- Main Reservations CRUD Management Section -->
+        <section class="dashboard-section" id="reservationsSection">
+          <div class="section-header">
+            <h3><i class="fas fa-concierge-bell"></i> Manajemen Reservasi & Operasional Tamu</h3>
+            <button class="btn-outline-gold" onclick="openReservationModal()" style="padding: 0.45rem 1rem; font-size: 0.78rem;">
+              <i class="fas fa-plus"></i> Tambah Tamu
+            </button>
+          </div>
+
+          <!-- Table Toolbar: Filters & Search -->
+          <div class="table-toolbar">
+            <div class="filter-pills">
+              <button class="filter-pill-btn active" data-filter="ALL">Semua Data</button>
+              <button class="filter-pill-btn" data-filter="RESERVED">Menunggu Check-In</button>
+              <button class="filter-pill-btn" data-filter="CHECKED-IN">Tamu In-House</button>
+              <button class="filter-pill-btn" data-filter="CHECKED-OUT">Selesai Check-Out</button>
+            </div>
+
+            <div class="quick-search" style="width: 250px;">
+              <i class="fas fa-filter"></i>
+              <input type="text" id="tableSearchInput" placeholder="Saring tabel...">
+            </div>
+          </div>
+
+          <!-- Table Wrapper -->
+          <div class="table-responsive">
+            <table class="luxury-table">
+              <thead>
+                <tr>
+                  <th>Kode Booking</th>
+                  <th>Nama Tamu & VIP Tier</th>
+                  <th>Suite / Kamar</th>
+                  <th>Jadwal Menginap</th>
+                  <th>Total Tagihan & Uang Muka</th>
+                  <th>Status</th>
+                  <th>Aksi Operasional</th>
+                </tr>
+              </thead>
+              <tbody id="reservationsTableBody">
+                <!-- Populated dynamically by js/dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ============================================================
+       MODAL 1: ADD / EDIT RESERVATION (CRUD: CREATE & UPDATE)
+       ============================================================ -->
+  <div class="modal-backdrop" id="reservationModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="reservationModalTitle"><i class="fas fa-calendar-plus"></i> Reservasi Kamar Baru</h3>
+        <button class="modal-close-btn" onclick="closeReservationModal()"><i class="fas fa-times"></i></button>
+      </div>
+      
+      <form id="reservationForm">
+        <input type="hidden" id="editReservationId">
+        <div class="modal-body">
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formGuestName">
+                <i class="fas fa-user"></i> Nama Lengkap Tamu
+              </label>
+              <input type="text" id="formGuestName" class="luxury-input" placeholder="Nama tamu terhormat..." required>
+            </div>
+
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formGuestIdentity">
+                <i class="fas fa-id-card"></i> No. KTP / Paspor
+              </label>
+              <input type="text" id="formGuestIdentity" class="luxury-input" placeholder="NIK / Passport ID..." required>
+            </div>
+          </div>
+
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formGuestEmail">
+                <i class="fas fa-envelope"></i> Email Tamu
+              </label>
+              <input type="email" id="formGuestEmail" class="luxury-input" placeholder="guest@domain.com">
+            </div>
+
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formGuestPhone">
+                <i class="fas fa-phone"></i> Nomor Telepon / WA
+              </label>
+              <input type="text" id="formGuestPhone" class="luxury-input" placeholder="+62 812...">
+            </div>
+          </div>
+
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formVipTier">
+                <i class="fas fa-medal"></i> Keanggotaan / Status VIP
+              </label>
+              <select id="formVipTier" class="luxury-select">
+                <option value="Marriott Ambassador Elite">Marriott Ambassador Elite</option>
+                <option value="Titanium Elite">Titanium Elite</option>
+                <option value="Platinum Elite">Platinum Elite</option>
+                <option value="Gold Elite">Gold Elite</option>
+                <option value="VIP Guest" selected>VIP Guest</option>
+                <option value="Regular Guest">Regular Guest</option>
+              </select>
+            </div>
+
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formRoomNumber">
+                <i class="fas fa-key"></i> Pilih Koleksi Suite
+              </label>
+              <select id="formRoomNumber" class="luxury-select" required>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formCheckInDate">
+                <i class="fas fa-calendar-check"></i> Tanggal Check-In
+              </label>
+              <input type="date" id="formCheckInDate" class="luxury-input" required>
+            </div>
+
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formCheckOutDate">
+                <i class="fas fa-calendar-times"></i> Tanggal Check-Out
+              </label>
+              <input type="date" id="formCheckOutDate" class="luxury-input" required>
+            </div>
+          </div>
+
+          <div class="form-row-grid">
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formDeposit">
+                <i class="fas fa-money-bill-wave"></i> Uang Muka / Deposit (IDR)
+              </label>
+              <input type="number" id="formDeposit" class="luxury-input" placeholder="0" min="0" step="500000">
+            </div>
+
+            <div class="luxury-input-group">
+              <label class="luxury-label" for="formStatus">
+                <i class="fas fa-toggle-on"></i> Status Awal
+              </label>
+              <select id="formStatus" class="luxury-select">
+                <option value="Reserved" selected>Reserved (Pemesanan Baru)</option>
+                <option value="Checked-In">Langsung Check-In (In-House)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="luxury-input-group">
+            <label class="luxury-label" for="formSpecialRequests">
+              <i class="fas fa-comment-dots"></i> Permintaan Khusus / Catatan Butler
+            </label>
+            <textarea id="formSpecialRequests" class="luxury-textarea" rows="2" placeholder="Contoh: Champagne sabrage pada pukul 19.00, extra pillow feather down..."></textarea>
+          </div>
+
+          <!-- Live Cost Estimator -->
+          <div style="background: rgba(197, 168, 128, 0.08); border: 1px dashed var(--border-gold); padding: 1rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <small style="color: var(--text-secondary); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em;">Estimasi Durasi:</small>
+              <div id="formEstimateNights" style="font-weight: 700; color: var(--gold-light);">1 Malam</div>
+            </div>
+            <div style="text-align: right;">
+              <small style="color: var(--text-secondary); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em;">Estimasi Biaya Suite:</small>
+              <div id="formEstimateTotal" style="font-weight: 700; font-size: 1.1rem; color: var(--gold-primary);">Rp 0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-outline-gold" onclick="closeReservationModal()">Batal</button>
+          <button type="submit" class="btn-gold"><i class="fas fa-save"></i> Simpan Data Reservasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL 2: FAST CHECK-IN PROCESS
+       ============================================================ -->
+  <div class="modal-backdrop" id="checkInModal">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3><i class="fas fa-key text-gold-gradient"></i> Proses Check-In Tamu</h3>
+        <button class="modal-close-btn" onclick="closeCheckInModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 0.88rem;">
+          Verifikasi data identitas tamu dan terbitkan kunci digital/RFID kamar untuk mengaktifkan status menginap.
+        </p>
+
+        <div style="background: rgba(15, 20, 32, 0.8); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+            <span style="color: var(--text-muted);">Nama Tamu:</span>
+            <strong id="checkInGuestName" style="color: var(--text-primary);">-</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+            <span style="color: var(--text-muted);">Kamar Dialokasikan:</span>
+            <strong id="checkInRoom" style="color: var(--gold-primary);">-</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem;">
+            <span style="color: var(--text-muted);">Periode Menginap:</span>
+            <span id="checkInDates" style="color: var(--text-secondary);">-</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+            <span style="color: var(--text-muted);">Deposit Diterima:</span>
+            <span id="checkInDeposit" style="color: #48d38a; font-weight: 600;">-</span>
+          </div>
+        </div>
+
+        <div class="luxury-input-group">
+          <label class="luxury-label" for="checkInKeyInput">
+            <i class="fas fa-id-card-clip"></i> Kode Penerbitan Kunci (RFID / Smart Card Key)
+          </label>
+          <input type="text" id="checkInKeyInput" class="luxury-input" placeholder="Contoh: KEY-801-VIP">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline-gold" onclick="closeCheckInModal()">Batal</button>
+        <button type="button" class="btn-gold" onclick="executeCheckIn()"><i class="fas fa-check-circle"></i> Terbitkan Kunci & Check-In</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL 3: FAST CHECK-OUT & LUXURY FOLIO INVOICE (PRINTABLE)
+       ============================================================ -->
+  <div class="modal-backdrop" id="folioModal">
+    <div class="modal-dialog" style="max-width: 800px;">
+      <div class="modal-header">
+        <h3><i class="fas fa-file-invoice-dollar text-gold-gradient"></i> Billing & Folio Check-Out</h3>
+        <button class="modal-close-btn" onclick="closeFolioModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" style="background: #eef2f5; padding: 1.5rem;">
+        
+        <!-- White Paper Luxury Invoice Structure -->
+        <div class="folio-invoice-container" id="printableInvoice">
+          <div class="folio-header">
+            <div class="folio-brand">
+              <h2>THE GRAND REGIS — LUXURY PREMIERE HOTEL</h2>
+              <p>
+                Jalan H.R. Rasuna Said Kav. B/4, Setiabudi, Jakarta Selatan 12910<br>
+                Tel: +62 21 5094 8888 | info@thegrandregisjakarta.com<br>
+                NPWP: 01.890.342.1-014.000 | Hotel Tax Reg: HTX-2026-SR
+              </p>
+            </div>
+            <div class="folio-meta">
+              <h4>GUEST FOLIO</h4>
+              <p><strong>Nomor Tagihan:</strong> <span id="folioNumber">INV-RSV-0000</span></p>
+              <p><strong>Tanggal:</strong> <span id="folioDate">05 Sep 2026</span></p>
+            </div>
+          </div>
+
+          <div class="folio-guest-grid">
+            <div>
+              <div class="folio-field">
+                <span>Nama Tamu:</span>
+                <span id="folioGuestName">-</span>
+              </div>
+              <div class="folio-field">
+                <span>Telepon:</span>
+                <span id="folioGuestPhone">-</span>
+              </div>
+            </div>
+            <div>
+              <div class="folio-field">
+                <span>Kamar:</span>
+                <span id="folioRoomNumber">-</span>
+              </div>
+              <div class="folio-field">
+                <span>Durasi Menginap:</span>
+                <span id="folioStayDuration">-</span>
+              </div>
+            </div>
+          </div>
+
+          <table class="folio-items-table">
+            <thead>
+              <tr>
+                <th>Deskripsi Layanan & Fasilitas</th>
+                <th style="text-align: right;">Jumlah (IDR)</th>
+              </tr>
+            </thead>
+            <tbody id="folioItemsBody">
+              <!-- Item rows populated by JS -->
+            </tbody>
+          </table>
+
+          <div class="folio-summary">
+            <table class="folio-summary-table">
+              <tr>
+                <td>Subtotal Kamar:</td>
+                <td style="text-align: right;" id="folioSubtotal">Rp 0</td>
+              </tr>
+              <tr>
+                <td>Biaya Layanan & Butler (10%):</td>
+                <td style="text-align: right;" id="folioService">Rp 0</td>
+              </tr>
+              <tr>
+                <td>Pajak Hotel & Restoran (11%):</td>
+                <td style="text-align: right;" id="folioTax">Rp 0</td>
+              </tr>
+              <tr class="grand-total">
+                <td>Total Folio:</td>
+                <td style="text-align: right;" id="folioGrandTotal">Rp 0</td>
+              </tr>
+              <tr>
+                <td style="color: #48d38a;">Deposit Telah Dibayar:</td>
+                <td style="text-align: right; color: #48d38a;" id="folioDeposit">-Rp 0</td>
+              </tr>
+              <tr style="font-weight: 700; color: #b91c1c; font-size: 0.95rem;">
+                <td>Sisa Pembayaran (Balance):</td>
+                <td style="text-align: right;" id="folioBalanceDue">Rp 0</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="folio-signature-row">
+            <div class="folio-sign-box">
+              <p>Tanda Tangan Tamu</p>
+              <div class="folio-sign-line"></div>
+              <p style="margin-top: 5px; font-weight: 600;" id="folioSignGuest">Tamu Terhormat</p>
+            </div>
+            <div class="folio-sign-box">
+              <p>Duty Manager / Kasir Front Desk</p>
+              <div class="folio-sign-line"></div>
+              <p style="margin-top: 5px; font-weight: 600;">The Grand Regis Jakarta</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline-gold" onclick="closeFolioModal()">Tutup</button>
+        <button type="button" class="btn-outline-gold" onclick="printFolioInvoice()"><i class="fas fa-print"></i> Cetak Bukti Billing (Print / PDF)</button>
+        <button type="button" class="btn-gold" id="btnConfirmCheckOutAction" onclick="executeCheckOut()"><i class="fas fa-check-double"></i> Konfirmasi Check-Out Tamu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL 4: DELETE CONFIRMATION
+       ============================================================ -->
+  <div class="modal-backdrop" id="deleteConfirmModal">
+    <div class="modal-dialog" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 style="color: #f87171;"><i class="fas fa-exclamation-triangle"></i> Konfirmasi Hapus</h3>
+        <button class="modal-close-btn" onclick="closeDeleteModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+          Apakah Anda yakin ingin membatalkan / menghapus reservasi berikut? Tindakan ini akan menghapus data dari sistem.
+        </p>
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; padding: 0.85rem; color: #fca5a5; font-weight: 600; font-size: 0.85rem;" id="deleteTargetInfo">
+          #RSV-0000 - Tamu
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline-gold" onclick="closeDeleteModal()">Batal</button>
+        <button type="button" class="btn-danger-outline" onclick="executeDeleteReservation()"><i class="fas fa-trash-alt"></i> Ya, Hapus Reservasi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Supabase & Core Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

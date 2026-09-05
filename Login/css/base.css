@@ -1,0 +1,540 @@
+/* ============================================================
+   THE GRAND REGIS JAKARTA - BASE DESIGN SYSTEM
+   Luxury Hospitality Design Language
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Luxury Gold & Metallic Accents */
+  --gold-primary: #c5a880;
+  --gold-hover: #d8bd99;
+  --gold-dark: #98784f;
+  --gold-light: #f5eedf;
+  --gold-dim: rgba(197, 168, 128, 0.15);
+  --gold-gradient: linear-gradient(135deg, #e3ca9e 0%, #c5a880 50%, #9e7e52 100%);
+  --gold-gradient-soft: linear-gradient(135deg, rgba(197, 168, 128, 0.2) 0%, rgba(197, 168, 128, 0.05) 100%);
+
+  /* Deep Royal Obsidian & Old Money Heritage Palette */
+  --bg-main: #07090e;
+  --bg-surface: #0c0f17;
+  --bg-card: #121722;
+  --bg-card-hover: #19202f;
+  --bg-modal: #0f131d;
+  --bg-overlay: rgba(4, 6, 10, 0.88);
+
+  /* Old Money Aristocratic Tones */
+  --old-money-mahogany: #1e1510;
+  --old-money-cognac: #855b32;
+  --antique-gold: #d4af37;
+  --burnished-gold: #c5a880;
+  --champagne-silk: #f4ece1;
+
+  /* Typography & Readability */
+  --text-primary: #fcfbf9;
+  --text-secondary: #9da9be;
+  --text-muted: #5e6c84;
+  --text-gold: #c5a880;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(197, 168, 128, 0.18);
+  --border-gold: rgba(197, 168, 128, 0.45);
+  --border-gold-strong: #c5a880;
+
+  /* Status Colors (Curated Luxury Shades) */
+  --status-reserved-bg: rgba(212, 160, 23, 0.15);
+  --status-reserved-text: #e6b94d;
+  --status-reserved-border: rgba(230, 185, 77, 0.3);
+
+  --status-checkedin-bg: rgba(46, 204, 113, 0.15);
+  --status-checkedin-text: #48d38a;
+  --status-checkedin-border: rgba(72, 211, 138, 0.35);
+
+  --status-checkedout-bg: rgba(100, 116, 139, 0.18);
+  --status-checkedout-text: #94a3b8;
+  --status-checkedout-border: rgba(148, 163, 184, 0.25);
+
+  --status-cleaning-bg: rgba(147, 51, 234, 0.15);
+  --status-cleaning-text: #c084fc;
+  --status-cleaning-border: rgba(192, 132, 252, 0.3);
+
+  --status-danger-bg: rgba(239, 68, 68, 0.15);
+  --status-danger-text: #f87171;
+  --status-danger-border: rgba(248, 113, 113, 0.35);
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-luxury: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(197, 168, 128, 0.08);
+  --shadow-gold: 0 0 20px rgba(197, 168, 128, 0.25);
+
+  /* Fonts */
+  --font-brand: 'Cinzel', serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(197, 168, 128, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(26, 38, 61, 0.3) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Typography Presets */
+h1, h2, h3, h4, .brand-title {
+  font-family: var(--font-brand);
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.serif-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--gold-hover);
+}
+
+/* Gold Text Gradient */
+.text-gold-gradient {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Crest & Monogram Ornament */
+.brand-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.2);
+}
+
+.brand-monogram::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(197, 168, 128, 0.4);
+  border-radius: 50%;
+}
+
+.brand-monogram i {
+  color: var(--gold-primary);
+  font-size: 1.4rem;
+}
+
+/* Luxury Button System */
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #0c0f16;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 15px rgba(197, 168, 128, 0.25);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(197, 168, 128, 0.4);
+  filter: brightness(1.08);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold-primary);
+  border: 1px solid var(--border-gold);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-outline-gold:hover {
+  background: var(--gold-dim);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  color: var(--status-danger-text);
+  border: 1px solid var(--status-danger-border);
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-danger-outline:hover {
+  background: var(--status-danger-bg);
+  border-color: var(--status-danger-text);
+}
+
+/* Luxury Input & Form Elements */
+.luxury-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.luxury-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.luxury-input, .luxury-select, .luxury-textarea {
+  width: 100%;
+  background: rgba(14, 18, 29, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: var(--transition);
+  outline: none;
+}
+
+.luxury-input:focus, .luxury-select:focus, .luxury-textarea:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.15);
+  background: rgba(18, 24, 38, 0.95);
+}
+
+.luxury-input::placeholder, .luxury-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.luxury-select option {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 168, 128, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* Status Badges */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-reserved {
+  background: var(--status-reserved-bg);
+  color: var(--status-reserved-text);
+  border: 1px solid var(--status-reserved-border);
+}
+
+.badge-checkedin {
+  background: var(--status-checkedin-bg);
+  color: var(--status-checkedin-text);
+  border: 1px solid var(--status-checkedin-border);
+}
+
+.badge-checkedout {
+  background: var(--status-checkedout-bg);
+  color: var(--status-checkedout-text);
+  border: 1px solid var(--status-checkedout-border);
+}
+
+.badge-cleaning {
+  background: var(--status-cleaning-bg);
+  color: var(--status-cleaning-text);
+  border: 1px solid var(--status-cleaning-border);
+}
+
+/* Toast Notifications */
+#toastContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.luxury-toast {
+  pointer-events: auto;
+  min-width: 320px;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-left: 4px solid var(--gold-primary);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-luxury);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: slideInToast 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+.luxury-toast.toast-success {
+  border-left-color: #48d38a;
+}
+
+.luxury-toast.toast-error {
+  border-left-color: #f87171;
+}
+
+.toast-content h5 {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+}
+
+.toast-content p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+@keyframes slideInToast {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------
+   OLD MONEY ROLE SWITCHER (STAF VS TAMU)
+   ------------------------------------------------------------ */
+.role-tabs-container {
+  display: flex;
+  background: rgba(8, 11, 17, 0.85);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  padding: 4px;
+  margin-bottom: 1.75rem;
+  gap: 4px;
+}
+
+.role-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.role-tab-btn:hover {
+  color: var(--gold-light);
+  background: rgba(197, 168, 128, 0.08);
+}
+
+.role-tab-btn.active {
+  background: var(--gold-gradient);
+  color: #07090e;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(197, 168, 128, 0.35);
+}
+
+.role-tab-btn i {
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------
+   GOOGLE SIGN-IN LUXURY BUTTON & DIVIDER
+   ------------------------------------------------------------ */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.25rem 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.auth-divider span {
+  padding: 0 0.85rem;
+}
+
+.btn-google-luxury {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  color: #1f2937;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-google-luxury:hover {
+  background: #f9fafb;
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 15px rgba(197, 168, 128, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-google-luxury svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Google Account Selection Modal */
+.google-account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.google-account-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: rgba(15, 20, 32, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.google-account-item:hover {
+  border-color: var(--gold-primary);
+  background: rgba(197, 168, 128, 0.1);
+  transform: translateY(-1px);
+}
+
+.google-account-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4285F4, #34A853);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+

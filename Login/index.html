@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=login.html">
+  <title>Mengarahkan ke The Grand Regis — Luxury Premiere Hotel...</title>
+  <script>
+    // Smart redirect based on existing session & role
+    const session = localStorage.getItem('grand_regis_session');
+    if (session) {
+      try {
+        const user = JSON.parse(session);
+        if (user.userType === 'guest') {
+          window.location.href = 'guest-dashboard.html';
+        } else {
+          window.location.href = 'dashboard.html';
+        }
+      } catch (e) {
+        window.location.href = 'login.html';
+      }
+    } else {
+      window.location.href = 'login.html';
+    }
+  </script>
+</head>
+<body style="background: #07090e; color: #c5a880; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+  <p>Mengarahkan ke The Grand Regis — Luxury Premiere Hotel...</p>
+</body>
+</html>
